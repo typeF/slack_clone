@@ -3,9 +3,6 @@ export default (sequelize, DataTypes) => {
     'message', 
     {
       text: DataTypes.STRING
-    },
-    { 
-      underscored: true 
     }
   );
 

@@ -4,8 +4,7 @@ export default (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       public: DataTypes.BOOLEAN
-    },
-    { underscored: true }
+    }
   );
 
   Channel.associate = (models) => {

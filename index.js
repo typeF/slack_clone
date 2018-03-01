@@ -1,27 +1,45 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import express from "express";
+import bodyParser from "body-parser";
+import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
+import path from "path";
+import { fileLoader, mergeTypes, mergeResolvers } from "merge-graphql-schemas";
 
-import typeDefs from './schema';
-import resolvers from './resolvers';
-import models from './models';
+import models from "./models";
 
-import { makeExecutableSchema } from 'graphql-tools';
+const typeDefs = mergeTypes(fileLoader(path.join(__dirname, "./schema")));
+const resolvers = mergeResolvers(
+  fileLoader(path.join(__dirname, "./resolvers"))
+);
+
+import { makeExecutableSchema } from "graphql-tools";
 
 export const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 const PORT = 8080;
 
 const app = express();
 
-const graphqlEndpoint = '/graphql';
+const graphqlEndpoint = "/graphql";
 
-app.use(graphqlEndpoint, bodyParser.json(), graphqlExpress({ schema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
+app.use(
+  graphqlEndpoint,
+  bodyParser.json(),
+  graphqlExpress({
+    schema,
+    context: {
+      models,
+      user: {
+        id: 1,
+      },
+    },
+  })
+);
 
-models.sequelize.sync({ force: true }).then(() => {
+app.use("/graphiql", graphiqlExpress({ endpointURL: graphqlEndpoint }));
+
+models.sequelize.sync().then(() => {
   app.listen(PORT);
-})
+});
