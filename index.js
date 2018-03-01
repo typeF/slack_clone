@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
 import path from "path";
 import { fileLoader, mergeTypes, mergeResolvers } from "merge-graphql-schemas";
+import cors from 'cors'
 
 import models from "./models";
 
@@ -21,6 +22,8 @@ export const schema = makeExecutableSchema({
 const PORT = 8080;
 
 const app = express();
+
+app.use(cors('*'));
 
 const graphqlEndpoint = "/graphql";
 
