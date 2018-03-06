@@ -8,11 +8,11 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlphanumeric: {
             args: true,
-            message: "Username can only have letters and numbers"
+            msg: "Username can only have letters and numbers"
           },
           len: {
             args: [3, 25],
-            message: "Username length must be between 3-25 characters"
+            msg: "Username length must be between 3-25 characters"
           }
         }
       },
@@ -21,8 +21,7 @@ export default (sequelize, DataTypes) => {
         unique: true,
         validate: {
           isEmail: {
-            args: true,
-            message: "Invalid email format"
+            msg: "Invalid email format"
           }
         }
       },
