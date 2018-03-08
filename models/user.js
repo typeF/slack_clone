@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 export default (sequelize, DataTypes) => {
   const User = sequelize.define(
     'user', 
@@ -27,6 +29,20 @@ export default (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
+        validate: {
+          len: {
+            args: [5, 25],
+            msg: "Password length must be between 5-25 characters"
+          }
+        }
+      }
+    },
+    {
+      hooks: {
+        afterValidate: async (user) => {
+          const hashedPassword = await bcrypt.hash(user.password, 12);
+          user.password = hashedPassword;
+        }
       }
     }
   );
