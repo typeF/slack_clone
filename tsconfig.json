@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "outDir": "build",
+        "allowSyntheticDefaultImports": true,
+        "lib": ["es6", "dom", "esnext.asynciterable"]
+    },
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+        "**/*.test.ts"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ]
+}
