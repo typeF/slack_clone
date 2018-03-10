@@ -16,10 +16,16 @@ class CreateTeam extends Component {
 
   onSubmit = async () => {
     const { name } = this;
+    let response = null;
 
-    const response = await this.props.mutate({
-      variables: { name }
-    });
+    try {
+      response = await this.props.mutate({
+        variables: { name }
+      });
+    } catch (err) {
+      this.props.history.push('/login');
+      return
+    }
 
     const { ok, errors } = response.data.createTeam;
 
@@ -67,13 +73,13 @@ class CreateTeam extends Component {
         </Form>
 
         {errorList.length ?
-          (<Message
-            error
-            header="There was an error with the submission"
-            list={errorList}
-          />)
-          :
-          null
+            (<Message
+              error
+              header="There was an error with the submission"
+              list={errorList}
+            />)
+            :
+            null
         }
 
       </Container>
