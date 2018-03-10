@@ -87,7 +87,7 @@ const client = new ApolloClient({
 
 const App = (
   <ApolloProvider client={client}>
-    <Routes />
+    <Routes/>
   </ApolloProvider>
 );
 
