@@ -8,7 +8,7 @@ import Sidebar from '../containers/Sidebar';
 
 export default () => ( 
   <AppLayout>
-    <Sidebar currentTeamId={7}/>
+    <Sidebar currentTeamId={14}/>
     <Header channelName="General"/>
     <Messages>
       <ul className="message-list">

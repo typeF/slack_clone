@@ -18,10 +18,11 @@ const Sidebar = ({ data: { loading, allTeams }, currentTeamId }) => {
   try {
     const token = localStorage.getItem('token');
     const { user } = decode(token);
-    // eslint-disable-next-line prefer-destructuring
     username = user.username;
-  } catch (err) {}
+  } catch (err) {
+  }
 
+  console.log(teamIdx);
   console.log('allteams: ', allTeams);
 
   return [
