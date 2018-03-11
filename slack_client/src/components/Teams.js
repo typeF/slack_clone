@@ -33,28 +33,9 @@ const TeamListItem = styled.li`
   }
 `;
 
-// const TeamListItem = styled.li`
-//   height: 50px;
-//   width: 50px;
-//   background-color: #676066;
-//   color: #fff;
-//   margin: auto;
-//   margin-bottom: 10px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 24px;
-//   border-radius: 11px;
-//   &:hover {
-//     border-style: solid;
-//     border-width: thick;
-//     border-color: #767676;
-//   }
-// `;
-
-const team = ({id, name}) => (
+const team = ({id, letter}) => (
   <TeamListItem key={`team-${id}`}>
-    {name}
+    {letter}
   </TeamListItem>
 );
 

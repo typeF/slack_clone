@@ -2,6 +2,8 @@ import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize('slack_clone', 'f', 'postgres', {
   dialect: 'postgres',
+  // Resolves deprecated warning
+  operatorsAliases: Sequelize.Op,
   define: {
     underscored: true
   }
