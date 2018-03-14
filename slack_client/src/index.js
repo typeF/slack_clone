@@ -8,9 +8,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import 'semantic-ui-css/semantic.min.css';
 
-// import { ApolloLink, concat } from 'apollo-link';
-// import { HttpLink, createHttpLink } from 'apollo-link-http';
-//
 import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
 
